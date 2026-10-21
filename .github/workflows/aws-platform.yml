@@ -1,0 +1,51 @@
+name: Pragyan AWS platform (manual only)
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Deploy only after approving the account, region, limits and teardown plan'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run bundle:workers
+      - run: npm run synth
+  deploy:
+    if: ${{ inputs.deploy }}
+    needs: verify
+    environment: aws-demo
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+          allowed-account-ids: '090208085314'
+      - run: npm ci
+      - run: npm run bundle:workers
+      - name: Validate reviewed deployment context
+        env:
+          DEPLOY_CONTEXT: ${{ vars.PRAGYAN_CDK_CONTEXT }}
+        run: node scripts/deploy-context.mjs
+      - run: npx cdk deploy --app 'npx tsx infra/app.ts' --require-approval never

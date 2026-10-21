@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Archives
+*.zip
+
+# Media (generated)
+backend/media/videos/
+backend/media/temp/
+*.mp4
+*.png
+
+# Node
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+whatsapp-bot/.paper_cache.json
+whatsapp-bot/.wwebjs_auth/
+whatsapp-bot/.wwebjs_cache/
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Remotion / generated media (renders + TTS cache can be GBs)
+remotion-service/output/
+remotion-service/audio-cache/
+remotion-service/dist/
+remotion-service/.cache/
+
+# Pitch deck / large binaries that don't belong in source
+*.pdf
+
+# Local secrets (defense-in-depth on top of .env above)
+.env.*
+!.env.example
+!.env.studio.example
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Manim
+media/
+
+# Local virtualenvs
+backend/venv/
+
+# New local studio
+.local/
+cdk.out/
+artifacts/
+
+.next-dev/
+.next-static/
+cdk.context.json

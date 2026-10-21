@@ -1,0 +1,22 @@
+{
+  "name": "@pragyan/studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 3000",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 3000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "15.5.27",
+    "react": "19.1.6",
+    "react-dom": "19.1.6",
+    "@pragyan/schema": "*",
+    "@pragyan/video": "*",
+    "@remotion/player": "4.0.533",
+    "lucide-react": "^0.523.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

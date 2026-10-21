@@ -1,0 +1,10 @@
+node_modules
+.env
+output
+bundle
+*.log
+dist
+.DS_Store
+
+# Intermediate Sarvam TTS chunks (final per-scene WAVs are committed)
+public/cyberspark/audio/.chunks/

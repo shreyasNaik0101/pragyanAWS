@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gyan Pragyan — Hackathon Presentation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; background: #fff; color: #222; }
+
+  .slide {
+    width: 1280px; height: 720px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #f0f0f0 100%);
+    page-break-after: always; margin: 0 auto;
+  }
+  .slide::before {
+    content: ''; position: absolute; left: 0; top: 0; width: 28px; height: 100%;
+    background: #4a2d8a;
+  }
+  .slide::after {
+    content: ''; position: absolute; right: 0; top: 0; width: 350px; height: 100%;
+    background:
+      linear-gradient(225deg, rgba(200,190,210,0.3) 25%, transparent 25%) 0 0,
+      linear-gradient(315deg, rgba(200,190,210,0.2) 25%, transparent 25%) 100px 80px,
+      linear-gradient(45deg, rgba(124, 105, 144, 0.15) 25%, transparent 25%) 50px 200px;
+    background-size: 200px 200px;
+  }
+
+  .slide-content { padding: 50px 60px 50px 70px; position: relative; z-index: 2; height: 100%; }
+  .slide-num { position: absolute; bottom: 30px; right: 50px; font-size: 28px; color: #999; z-index: 3; }
+
+  h2 { font-size: 36px; font-weight: 800; color: #4a2d8a; text-transform: uppercase;
+       margin-bottom: 8px; letter-spacing: 1px; }
+  h2::after { content: ''; display: block; width: 280px; height: 3px; background: #333; margin-top: 8px; }
+
+  .bullet { margin: 14px 0 0 15px; }
+  .bullet li { font-size: 19px; line-height: 1.65; margin-bottom: 6px; list-style: disc; color: #333; }
+  .bullet li strong { color: #4a2d8a; }
+
+  .sub-heading { font-size: 21px; font-weight: 700; color: #4a2d8a; margin: 16px 0 6px 0; }
+
+  table.info { border-collapse: collapse; margin: 14px 0 0 0; width: 90%; }
+  table.info th { background: #4a2d8a; color: #fff; padding: 9px 14px; text-align: left; font-size: 15px; }
+  table.info td { padding: 9px 14px; font-size: 15px; border-bottom: 1px solid #ddd; }
+  table.info tr:nth-child(even) td { background: rgba(74,45,138,0.05); }
+
+  .title-slide { background: linear-gradient(135deg, #4a2d8a 0%, #6b3fa0 40%, #8b5fbf 100%); }
+  .title-slide::before { background: #fff; }
+  .title-slide .slide-content { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .title-slide h1 { font-size: 64px; font-weight: 800; color: #fff; margin-bottom: 16px; }
+  .title-slide .tagline { font-size: 28px; color: rgba(255,255,255,0.85); font-weight: 400; }
+  .title-slide .team { font-size: 20px; color: rgba(255,255,255,0.6); margin-top: 40px; }
+
+  .highlight-box { background: rgba(74,45,138,0.08); border-left: 4px solid #4a2d8a;
+                   padding: 12px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; max-width: 88%; }
+  .highlight-box p { font-size: 17px; line-height: 1.55; }
+
+  .two-col { display: flex; gap: 36px; margin-top: 12px; }
+  .two-col .col { flex: 1; }
+
+  .flow-box { display: inline-block; background: #4a2d8a; color: #fff; padding: 7px 16px;
+              border-radius: 6px; font-size: 14px; font-weight: 600; margin: 3px; }
+  .flow-arrow { display: inline-block; font-size: 20px; color: #4a2d8a; margin: 0 3px; vertical-align: middle; }
+
+  .stat-row { display: flex; gap: 20px; margin: 18px 0; }
+  .stat-card { background: #4a2d8a; color: #fff; border-radius: 10px; padding: 16px 22px; text-align: center; flex: 1; }
+  .stat-card .num { font-size: 32px; font-weight: 800; }
+  .stat-card .label { font-size: 13px; margin-top: 4px; opacity: 0.85; }
+
+  @media print {
+    .slide { page-break-after: always; margin: 0; }
+    body { background: #fff; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 01 — TITLE -->
+<div class="slide title-slide">
+  <div class="slide-content">
+    <h1>Gyan Pragyan</h1>
+    <div class="tagline">AI-Powered On-Demand Learning Engine for Bharat</div>
+    <div class="team" style="margin-top: 24px; font-size: 22px; color: rgba(255,255,255,0.8);">
+      "Every student deserves a personal tutor — in their language, at their moment of need"
+    </div>
+    <div class="team">Hackathon Presentation · April 2026</div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,0.4)">01</div>
+</div>
+
+<!-- SLIDE 02 — PROBLEM STATEMENT -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Problem Statement</h2>
+    <div class="highlight-box">
+      <p><strong>When a student is stuck on a concept at 11 PM, they have no way to get a quick, visual, language-friendly explanation.</strong> Existing tools give either 400 words of English text (ChatGPT) or a 2-hour pre-recorded lecture (Byju's) — neither addresses the <em>specific doubt</em>, in <em>their language</em>, <em>right now</em>.</p>
+    </div>
+    <div class="sub-heading">The 3 Gaps No One Has Solved Together</div>
+    <ul class="bullet">
+      <li><strong>⏱ Time Gap:</strong> Students need answers NOW — not a 20-min lecture for a 1-minute doubt. Teachers handle 40-60 students; they can't give 1-on-1 attention at scale.</li>
+      <li><strong>👁 Visual Gap:</strong> STEM concepts (Fourier Transform, DNA replication, BFS algorithm) cannot be understood from text alone — they need <strong>animated visual explanations</strong>.</li>
+      <li><strong>🗣 Language Gap:</strong> 50%+ Indian students think in Hindi/regional languages, but every AI tool (ChatGPT, Gemini, Khan Academy) responds only in English.</li>
+    </ul>
+    <div class="highlight-box" style="margin-top: 14px;">
+      <p>📌 <strong>Our problem is NOT "replacing teachers."</strong> It's: <em>"When the teacher isn't available, how does a student get a quick visual explanation of their specific doubt, in the language they think in?"</em></p>
+    </div>
+    <p style="font-size: 16px; color: #4a2d8a; font-weight: 700; margin-top: 10px;">Theme: AI-Powered Inclusive & Accessible Education</p>
+  </div>
+  <div class="slide-num">02</div>
+</div>
+
+<!-- SLIDE 03 — PROPOSED SOLUTION -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Proposed Idea / Solution</h2>
+    <div class="highlight-box">
+      <p><strong>Gyan Pragyan</strong> generates <strong>custom 1-minute animated explainer videos</strong> with voiceover in the student's language — on-demand, for any concept, in ~30 seconds. It's a doubt-clearance engine, not a lecture replacement.</p>
+    </div>
+    <div class="sub-heading">Core Innovation: Generate, Don't Search</div>
+    <ul class="bullet">
+      <li><strong>AI Video Generator:</strong> Type any concept → get a focused animated video with domain-aware visuals (equations for math, diagrams for biology, code for DSA) in ~30 seconds</li>
+      <li><strong>Multi-lingual TTS:</strong> Videos narrated in Hindi, Hinglish, Kannada, Marathi, English — powered by Sarvam AI</li>
+      <li><strong>WhatsApp Bot:</strong> Send doubt on WhatsApp → get AI explanation + video back. No app download. Works on any ₹5K smartphone</li>
+      <li><strong>YouTube Summarizer:</strong> Paste any lecture URL → get timestamped AI summary + PDF notes (complements the 1-min video)</li>
+      <li><strong>AI Chat Assistant:</strong> Conversational doubt-solving with context memory — follows up across messages</li>
+      <li><strong>Photo Solver:</strong> Upload a photo of any problem (handwritten/textbook) → get step-by-step solution</li>
+    </ul>
+    <div class="highlight-box" style="margin-top: 8px;">
+      <p>🔗 <strong>1-min video clears the doubt + YouTube links provided for deep-dive</strong> — best of both worlds.</p>
+    </div>
+  </div>
+  <div class="slide-num">03</div>
+</div>
+
+<!-- SLIDE 04 — METHODOLOGY -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Methodology / How It Works</h2>
+    <div class="sub-heading">End-to-End Pipeline (Doubt → Video in ~30s)</div>
+    <div style="margin: 16px 0 12px 0;">
+      <span class="flow-box">Student Doubt</span><span class="flow-arrow">→</span>
+      <span class="flow-box">Intent Engine</span><span class="flow-arrow">→</span>
+      <span class="flow-box">LangGraph Supervisor</span><span class="flow-arrow">→</span>
+      <span class="flow-box">Specialist Agent</span>
+      <br><br>
+      <span class="flow-box">Script (GPT-4o)</span><span class="flow-arrow">→</span>
+      <span class="flow-box">TTS (Sarvam AI)</span><span class="flow-arrow">→</span>
+      <span class="flow-box">Render (Remotion)</span><span class="flow-arrow">→</span>
+      <span class="flow-box">Deliver (Web / WhatsApp)</span>
+    </div>
+    <div class="sub-heading">Key Technical Stages</div>
+    <ul class="bullet">
+      <li><strong>Intent Classification:</strong> Multi-agent LangGraph supervisor routes each query to the right team (Visual / Math / Coding / Video)</li>
+      <li><strong>Domain-Aware Script:</strong> GPT-4o generates structured scripts — physics gets equations, biology gets diagrams, DSA gets code blocks</li>
+      <li><strong>Parallel TTS:</strong> All narration segments synthesized simultaneously via Sarvam AI / OpenAI</li>
+      <li><strong>Pipelined Render:</strong> Webpack bundle, script generation, and TTS overlap in parallel — Remotion renders at 2x concurrency with optimized encoding</li>
+      <li><strong>Smart Caching:</strong> Same topic+language → instant response from disk cache (no re-render)</li>
+    </ul>
+  </div>
+  <div class="slide-num">04</div>
+</div>
+
+<!-- SLIDE 05 — TECHNOLOGY STACK -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Technology Stack</h2>
+    <div class="two-col">
+      <div class="col">
+        <div class="sub-heading">Frontend</div>
+        <ul class="bullet">
+          <li>Next.js 15 + React 19</li>
+          <li>Tailwind CSS 4 + Framer Motion</li>
+          <li>jsPDF (summary export)</li>
+          <li>Web Speech API (voice input)</li>
+        </ul>
+        <div class="sub-heading">Backend</div>
+        <ul class="bullet">
+          <li>FastAPI (Python async API)</li>
+          <li>LangGraph (multi-agent orchestration)</li>
+          <li>LangChain + OpenAI GPT-4o</li>
+          <li>Redis (session store & cache)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="sub-heading">AI / ML Services</div>
+        <ul class="bullet">
+          <li>OpenAI GPT-4o (script & reasoning)</li>
+          <li>Sarvam AI bulbul:v2 (Indic TTS)</li>
+          <li>Google Gemini Flash (vision analysis)</li>
+        </ul>
+        <div class="sub-heading">Video Pipeline</div>
+        <ul class="bullet">
+          <li>Remotion (React-based video renderer)</li>
+          <li>FFmpeg + ffprobe (audio/video processing)</li>
+          <li>KaTeX (math equation rendering)</li>
+        </ul>
+        <div class="sub-heading">WhatsApp Bot</div>
+        <ul class="bullet">
+          <li>whatsapp-web.js + Node.js + TypeScript</li>
+          <li>Redis (per-user conversation memory)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05</div>
+</div>
+
+<!-- SLIDE 06 — EXPECTED OUTCOME -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Expected Outcome / Prototype</h2>
+    <div class="sub-heading">Working Prototype — Fully Functional Today</div>
+    <ul class="bullet">
+      <li><strong>AI Video Generator:</strong> Any concept → 1-min animated video with voiceover, generated in ~30 seconds</li>
+      <li><strong>WhatsApp Bot:</strong> Send doubt → get text explanation + generated video delivered as MP4</li>
+      <li><strong>YouTube Summarizer:</strong> Paste lecture URL → AI summary with timestamps + downloadable PDF</li>
+      <li><strong>AI Chat:</strong> Context-aware multi-turn conversation for doubt solving</li>
+      <li><strong>Photo Solver:</strong> Upload image of problem → AI analyzes and solves step-by-step</li>
+      <li><strong>5 Languages:</strong> English, Hindi, Hinglish, Kannada, Marathi — end-to-end</li>
+    </ul>
+    <div class="stat-row">
+      <div class="stat-card"><div class="num">~30s</div><div class="label">Video Generation</div></div>
+      <div class="stat-card"><div class="num">&lt;1s</div><div class="label">Cached Response</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="label">Languages</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="label">Delivery Channels</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="label">Scene Types</div></div>
+    </div>
+    <div class="highlight-box">
+      <p>📦 <strong>Deliverables:</strong> Web Dashboard + WhatsApp Bot + Remotion Video Service + FastAPI Backend — all running, tested, and integrated.</p>
+    </div>
+  </div>
+  <div class="slide-num">06</div>
+</div>
+
+<!-- SLIDE 07 — TARGET AUDIENCE & BUSINESS -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Target Audience & Business Model</h2>
+    <div class="highlight-box">
+      <p>⚡ <strong>Not just for school kids.</strong> Any learner who needs a visual explanation of a complex concept — from Class 6 students to working professionals.</p>
+    </div>
+    <table class="info" style="margin-top:12px">
+      <tr><th>Segment</th><th>Who</th><th>Revenue Model</th></tr>
+      <tr><td><strong>Schools (6-12)</strong></td><td>Students + Teachers (CBSE/ICSE/State)</td><td>Per-school license (₹50K-2L/yr)</td></tr>
+      <tr><td><strong>Coaching Centres</strong></td><td>JEE/NEET/UPSC aspirants</td><td>Per-student SaaS (₹200-500/month)</td></tr>
+      <tr><td><strong>Colleges</strong></td><td>Engineering & Science UG/PG</td><td>Institutional license</td></tr>
+      <tr><td><strong>Corporate Training</strong></td><td>Employee onboarding & upskilling</td><td>Enterprise API pricing</td></tr>
+      <tr><td><strong>Self-Learners</strong></td><td>YouTube learners, hobbyists</td><td>Freemium + premium</td></tr>
+      <tr><td><strong>Govt / NGO</strong></td><td>NEP 2020 digital education push</td><td>Government tenders / CSR</td></tr>
+    </table>
+    <div class="sub-heading" style="margin-top:12px">Market Opportunity</div>
+    <ul class="bullet">
+      <li><strong>260M+ students</strong> in India · <strong>₹70,000 Cr</strong> EdTech market · <strong>500M+</strong> WhatsApp users in India</li>
+    </ul>
+  </div>
+  <div class="slide-num">07</div>
+</div>
+
+<!-- SLIDE 08 — WHY 1-MIN VIDEOS -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Why 1-Min Videos Work</h2>
+    <div class="highlight-box">
+      <p><strong>We don't replace lectures.</strong> We clear specific doubts — then link students to full resources for deep learning.</p>
+    </div>
+    <div class="two-col" style="margin-top: 10px;">
+      <div class="col">
+        <div class="sub-heading">The Science</div>
+        <ul class="bullet">
+          <li><strong>Cognitive Load Theory</strong> (Sweller, 1988): Short visual bursts reduce extraneous load → better retention</li>
+          <li><strong>Multimedia Learning</strong> (Mayer, 2009): Words + pictures > words alone</li>
+          <li><strong>Microlearning:</strong> 1-min focused content has 3x higher completion rate than 20-min lectures</li>
+        </ul>
+        <div class="sub-heading">Our Approach</div>
+        <ul class="bullet">
+          <li>1-min video → clears the immediate doubt</li>
+          <li>YouTube links → provided for full deep-dive</li>
+          <li>AI Chat → follow-up questions answered</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="sub-heading">Platform Comparison</div>
+        <table class="info">
+          <tr><th>Tool</th><th>"What is BFS?"</th></tr>
+          <tr><td>ChatGPT</td><td>400 words text, no visuals</td></tr>
+          <tr><td>Byju's</td><td>20-min pre-recorded lecture</td></tr>
+          <tr><td>Khan Academy</td><td>English only, no custom video</td></tr>
+          <tr><td><strong>Gyan Pragyan</strong></td><td><strong>60s animated video + Hindi voiceover + YouTube links</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08</div>
+</div>
+
+<!-- SLIDE 09 — FUTURE SCOPE -->
+<div class="slide">
+  <div class="slide-content">
+    <h2>Future Scope & Roadmap</h2>
+    <div class="two-col">
+      <div class="col">
+        <div class="sub-heading">Short Term (3-6 months)</div>
+        <ul class="bullet">
+          <li>Voice input (Sarvam Speech-to-Text)</li>
+          <li>Add Tamil, Telugu, Bengali, Gujarati</li>
+          <li>Offline video cache (PWA mode)</li>
+          <li>Teacher admin dashboard with analytics</li>
+          <li>Telegram bot integration</li>
+        </ul>
+        <div class="sub-heading">Medium Term (6-12 months)</div>
+        <ul class="bullet">
+          <li>Adaptive learning paths (AI tracks weak areas)</li>
+          <li>Fine-tuned models for JEE/NEET/UPSC syllabus</li>
+          <li>Google Classroom + LMS integration</li>
+          <li>AI-generated quiz & assessment system</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="sub-heading">Long Term (1-2 years)</div>
+        <ul class="bullet">
+          <li><strong>B2B SaaS:</strong> White-label for Allen, FIITJEE, Aakash, Unacademy</li>
+          <li><strong>Corporate training:</strong> Compliance, onboarding video generation</li>
+          <li><strong>Govt partnerships:</strong> NEP 2020, PM eVidya, DIKSHA integration</li>
+          <li><strong>API marketplace:</strong> Let any EdTech embed our video engine</li>
+          <li>Exam-specific content packs (CBSE, ICSE, State boards)</li>
+          <li>AR/VR immersive learning modules</li>
+        </ul>
+        <div class="sub-heading">Scalability</div>
+        <ul class="bullet">
+          <li>Near-zero cost per new topic (AI generates)</li>
+          <li>Cloud rendering scales horizontally</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09</div>
+</div>
+
+<!-- SLIDE 10 — THANK YOU -->
+<div class="slide title-slide">
+  <div class="slide-content">
+    <h1>Thank You</h1>
+    <div class="tagline">Gyan Pragyan — AI-Powered Learning for Bharat</div>
+    <div class="team" style="margin-top:30px; font-size: 22px; color: rgba(255,255,255,0.8);">
+      Every student deserves a personal tutor —<br>
+      in their language, on the device they already have.
+    </div>
+    <div class="team" style="margin-top: 30px;">Questions? Let's discuss! 🇮🇳</div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,0.4)">10</div>
+</div>
+
+</body>
+</html>

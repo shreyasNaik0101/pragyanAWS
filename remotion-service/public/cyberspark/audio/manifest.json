@@ -1,0 +1,42 @@
+[
+  {
+    "name": "scene1_intro",
+    "duration": 8.82,
+    "window": 18
+  },
+  {
+    "name": "scene2_home",
+    "duration": 28.89,
+    "window": 42
+  },
+  {
+    "name": "scene3_paths",
+    "duration": 45.29,
+    "window": 55
+  },
+  {
+    "name": "scene4_consult",
+    "duration": 40.24,
+    "window": 55
+  },
+  {
+    "name": "scene5_corporate",
+    "duration": 38.92,
+    "window": 55
+  },
+  {
+    "name": "scene6_kb",
+    "duration": 24.2,
+    "window": 40
+  },
+  {
+    "name": "scene7_about",
+    "duration": 14.21,
+    "window": 20
+  },
+  {
+    "name": "scene8_outro",
+    "duration": 10.55,
+    "window": 15
+  }
+]
