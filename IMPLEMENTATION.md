@@ -7,7 +7,7 @@ All source work remains local. The user approved the limited AWS pilot in accoun
 - Both original checkouts were clean on main. Pragyan baseline: `3b513b9`.
 - Working copy: `GyanIntentAWS/_Pragyan_`, cloned from the existing sibling checkout. Original apps remain available.
 - No AGENTS.md found in either repository or applicable workspace ancestors inspected.
-- Reuse seven existing Remotion scene families, illustrations, schema, and provider experience. No Manim in the new workflow.
+- Reuse seven existing Remotion scene families, illustrations, schema, and provider experience.
 - Legacy frontend: Next 16 / React 19; renderer: React 18 / Remotion 4.0.200. New studio and shared renderer align on React 19 / Remotion 4.0.533; Next 15.5.27 matches documented Amplify support.
 - GitHub authentication succeeds outside the sandbox proxy. AWS identity read-only: account 090208085314, IAM user shreyas01, configured us-east-1. Credit coverage has not been verified.
 

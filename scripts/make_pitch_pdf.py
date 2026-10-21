@@ -443,7 +443,7 @@ def slide_need(c):
          "always available).  There is NO scalable layer in between for 60-second doubt resolution "
          "in vernacular — that is the exact gap we fill."),
         ("The Timing",
-         "Generative video (Remotion / Manim-class tools) became viable in 2024.  Indic LLMs "
+         "Generative video with Remotion became viable in 2024.  Indic LLMs "
          "(Sarvam, IndicBERT) crossed usable quality in 2025.  WhatsApp is 500M+ MAU in India.  "
          "All three curves only just intersected — now is the window."),
         ("The Moat",

@@ -1,5 +1,7 @@
 # 🎓 Gyan Intent — From Gesture to Genius
 
+> Archived project proposal. For the current application, see [Pragyan Studio](STUDIO.md).
+
 > **An AI-Powered Educational Platform that Transforms Learning with Personalized, Interactive, and Multilingual Experiences**
 
 ---
@@ -21,7 +23,7 @@ Even in urban India — coaching hubs, engineering colleges, and competitive-exa
 
 ### What Makes Gyan Intent Different from ChatGPT / Gemini?
 
-ChatGPT **describes** concepts in text. Gyan Intent **creates** animated Manim videos + multilingual TTS, generates practice quizzes from your actual Classroom assignments, and delivers everything inside a single dashboard — or right inside WhatsApp.
+ChatGPT **describes** concepts in text. Gyan Intent **creates** animated videos + multilingual TTS, generates practice quizzes from your actual Classroom assignments, and delivers everything inside a single dashboard — or right inside WhatsApp.
 
 ---
 
@@ -87,9 +89,9 @@ User (Web / WhatsApp / Gesture)
 │   │   ├─ Visual Team     │      │  ← Image/drawing analysis
 │   │   ├─ Math Team       │      │  ← Step-by-step math solutions
 │   │   ├─ Coding Team     │      │  ← Code debugging & explanations
-│   │   └─ Video Team      │      │  ← Manim animation generation
+│   │   └─ Video Team      │      │  ← animated explanation generation
 │   └─────────────────────┘      │
-│   + Manim CE + FFmpeg + LaTeX   │  ← Video rendering pipeline
+│   + Remotion + FFmpeg           │  ← Video rendering pipeline
 │   + GPT-4o-mini / Gemini       │  ← LLM reasoning
 │   + Sarvam AI                   │  ← Hinglish TTS & Indic LLM
 └─────────────┬───────────────────┘
@@ -111,7 +113,7 @@ User (Web / WhatsApp / Gesture)
 
 **What**: Type any concept → Get a 40-70 second animated educational video with mathematical visualizations.
 
-**How it helps**: Replaces expensive video tutors. Any student can type "explain photosynthesis" and get a beautifully animated Manim video — for free.
+**How it helps**: Replaces expensive video tutors. A student can ask about photosynthesis and receive an animated visual explanation.
 
 **13 built-in concept templates**:
 
@@ -131,7 +133,7 @@ User (Web / WhatsApp / Gesture)
 | 12 | Mitosis (Cell Division) | ~27s |
 | 13 | Generic (any concept) | ~35s |
 
-**Tech**: Manim CE → 720p 30fps rendering → FFmpeg compression → Served via FastAPI
+**Tech**: Remotion rendering → MP4 encoding → video delivery
 
 ---
 
@@ -189,7 +191,7 @@ User (Web / WhatsApp / Gesture)
 |-------------------|-------------|
 | Any text question | AI explains the concept in your chosen language |
 | Math problem | Step-by-step solution with formatting |
-| "video photosynthesis" | Generates Manim animation video → sends as MP4 |
+| "video photosynthesis" | Generates animated explanation video → sends as MP4 |
 | `!language` | Change language preference |
 | `!help` | Show available commands |
 | Image of a problem | AI analyzes and solves it |
@@ -252,9 +254,9 @@ User (Web / WhatsApp / Gesture)
 | **Hand/Arm Injuries** | Gesture Quiz (Thumbs Up/Down) | Answer quizzes with simple thumb gestures instead of clicking buttons |
 | **Muscular Dystrophy** | Air Canvas with adjustable thresholds | Lenient gesture detection (only 2/4 fingers need to curl) accommodates limited hand mobility |
 | **Fine Motor Impairment** | WhatsApp Bot (Voice/Text) | Use voice-to-text on WhatsApp to ask questions — no precision input needed |
-| **Visual Processing Disorders** | Animated Videos (Manim) | Step-by-step visual animations are easier to follow than static text |
+| **Visual Processing Disorders** | Animated Videos | Step-by-step visual animations are easier to follow than static text |
 | **Dyslexia** | Multilingual Support | Content in Hindi/Hinglish reduces reading difficulty for students who think in vernacular languages |
-| **Low Vision** | High-contrast Manim animations | Bold colors, large text, clear mathematical notation in videos |
+| **Low Vision** | High-contrast animated explanations | Bold colors, large text, clear mathematical notation in videos |
 | **Limited Device Access** | WhatsApp Delivery | Works on any smartphone with WhatsApp — no laptop or special app needed |
 
 ### Key Accessibility Design Decisions:
@@ -283,7 +285,7 @@ User (Web / WhatsApp / Gesture)
 - Draw equations in the air or on screen — AI analyzes and solves them
 
 ### Teachers & Professors
-- Generate Manim-quality animated explanations on the fly — no video-editing skills needed
+- Generate high-quality animated explanations on the fly — no video-editing skills needed
 - Assign gesture-based quizzes via Google Classroom; track progress from the dashboard
 - WhatsApp bot acts as a 24/7 teaching assistant students can message anytime
 
@@ -305,7 +307,7 @@ User (Web / WhatsApp / Gesture)
 | **Frontend** | Next.js 15, React 19, Tailwind CSS, Framer Motion, Three.js, MediaPipe Hands |
 | **Backend** | FastAPI, LangGraph, LangChain, Uvicorn, PostgreSQL, Redis, Celery |
 | **AI Models** | OpenAI GPT-4o-mini, Sarvam AI (Hinglish TTS), Google Gemini, HuggingFace LLaVA |
-| **Video** | Manim CE (mathematical animations), FFmpeg, LaTeX |
+| **Video** | Remotion, FFmpeg, KaTeX |
 | **Messaging** | whatsapp-web.js (WhatsApp Bot) |
 | **Infra** | Docker, Railway (backend), Vercel (frontend) |
 

@@ -1,6 +1,6 @@
 """Video Factory endpoints — thin proxy to the Remotion renderer service.
 
-All Manim-based rendering has been replaced by the Node/Remotion service
+Video rendering is handled by the Node/Remotion service
 (see `remotion-service/` at the repo root). This module preserves the public
 API contract consumed by the WhatsApp bot and the frontend:
 

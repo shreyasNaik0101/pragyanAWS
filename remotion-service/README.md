@@ -1,6 +1,6 @@
 # Remotion Video Service
 
-Replaces Manim with Remotion-based rendering for Gyan_Pragyan.
+Provides Remotion-based rendering for Gyan_Pragyan.
 
 ## Endpoints
 

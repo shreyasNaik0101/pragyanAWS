@@ -4,7 +4,7 @@ This is the local verification snapshot written before the approved AWS pilot. T
 
 Pragyan now has an implemented Express/TypeScript workflow, editable Next.js studio, shared Remotion composition, durable local adapters, and AWS adapters/infrastructure. Three sample projects have completed real local narrated exports. **This is not a verified AWS deployment, and interactive browser acceptance remains pending.**
 
-All changes are in the isolated local checkout `GyanIntentAWS/_Pragyan_`, based on `3b513b9`. No commits, pushes, GitHub configuration changes, AWS resource provisioning or paid provider calls were performed. The original GyanIntentAWS source and sibling Pragyan checkout remain unchanged. Evolving Pragyan preserved its seven scene families, illustrations and provider experience; the original AWS project served as a reference. No Manim was added to the new workflow.
+All changes are in the isolated local checkout `GyanIntentAWS/_Pragyan_`, based on `3b513b9`. No commits, pushes, GitHub configuration changes, AWS resource provisioning or paid provider calls were performed during this local verification. The original GyanIntentAWS source and sibling Pragyan checkout remain unchanged. Evolving Pragyan preserved its seven scene families, illustrations and provider experience; the original AWS project served as a reference.
 
 ## Implemented
 

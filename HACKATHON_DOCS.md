@@ -1,12 +1,14 @@
 # Gyan Intent — Hackathon Documentation
 
+> Archived proposal. For the current application, see [Pragyan Studio](STUDIO.md).
+
 > **Tagline**: From Gesture to Genius — The Intent-Aware Learning Engine
 
 ---
 
 ## 📌 What is Gyan Intent?
 
-**Gyan Intent** is a **Generative AI-powered EdTech platform** built specifically for schools, colleges, and coaching centers across India. It eliminates the dependency on pre-recorded content libraries by **creating personalized educational content on-demand** — Manim-based video animations, interactive gesture quizzes, doubt solving from drawings, and multi-lingual explanations — all tailored to the student's query, language, and curriculum.
+**Gyan Intent** is a **Generative AI-powered EdTech platform** built specifically for schools, colleges, and coaching centers across India. It eliminates the dependency on pre-recorded content libraries by **creating personalized educational content on-demand** — generated video animations, interactive gesture quizzes, doubt solving from drawings, and multi-lingual explanations — all tailored to the student's query, language, and curriculum.
 
 Unlike Byju's, Unacademy, or Khan Academy which are fundamentally **content retrieval** platforms (search and play pre-made videos), Gyan Intent **manufactures content** the moment a student asks a question.
 
@@ -63,7 +65,7 @@ In India's **schools, colleges, and coaching centers**, there is a massive gap b
 
 | Feature | What It Does | Who Benefits |
 |---------|-------------|--------------|
-| **AI Video Generator** | Type any topic → Get a 30–60s Manim animation with Hinglish voiceover | School/College students, Teachers |
+| **AI Video Generator** | Type any topic → Get a 30–60s animated explanation with Hinglish voiceover | School/College students, Teachers |
 | **Gesture Quiz** | Answer MCQs via thumbs-up/thumbs-down hand gestures using webcam | All students, especially accessibility-focused |
 | **Draw & Solve** | Sketch a math/science problem, AI explains step-by-step | School students, Coaching center students |
 | **YouTube Summarizer** | Paste any lecture URL → AI summary + PDF download | College students |
@@ -78,7 +80,7 @@ In India's **schools, colleges, and coaching centers**, there is a massive gap b
 |------|----------|
 | **ChatGPT** | 400 words of English text |
 | **Byju's** | Pre-recorded 20-min lecture (fixed, can't be customized) |
-| **Gyan Intent** | 45-second Manim animation showing the magnetic field around a wire, with Hinglish voiceover |
+| **Gyan Intent** | 45-second animated explanation showing the magnetic field around a wire, with Hinglish voiceover |
 
 **Scenario**: A JEE student sends a photo of an integration problem on WhatsApp at 11 PM
 
@@ -127,8 +129,8 @@ In India's **schools, colleges, and coaching centers**, there is a massive gap b
 │  └──────────────────────────────────────────────────┼────────────┘   │
 │                                                     │                 │
 │  ┌──────────────────────────┐   ┌───────────────────┴──────────────┐ │
-│  │    MANIM VIDEO PIPELINE  │   │        SARVAM TTS PIPELINE       │ │
-│  │  Script → Manim Code     │   │  Script → Hinglish Audio         │ │
+│  │    VIDEO RENDER PIPELINE │   │        SARVAM TTS PIPELINE       │ │
+│  │  Script → scene plan     │   │  Script → Hinglish Audio         │ │
 │  │  → Self-healing render   │   │  → FFmpeg sync + mux             │ │
 │  │  → FFmpeg encode         │   └──────────────────────────────────┘ │
 │  └──────────────────────────┘                                         │
@@ -161,10 +163,10 @@ Student: "BFS explain karo, video chahiye"
          │
          ├──► [Script Generator] — GPT-4o generates Hinglish narration script
          │
-         ├──► [Manim Code Generator] — GPT-4o generates BFS animation code
-         │         └──► [Self-Healing Loop] — up to 3 auto-fix retries on error
+         ├──► [Scene Generator] — GPT-4o generates BFS scene data
+         │         └──► [Validation] — checks scene data before rendering
          │
-         ├──► [Manim Renderer] — renders MP4 video (25–40 seconds)
+         ├──► [Video Renderer] — renders MP4 video (25–40 seconds)
          │
          ├──► [Sarvam TTS] — generates Hinglish voiceover audio at matching pace
          │
@@ -199,7 +201,7 @@ Student: "BFS explain karo, video chahiye"
 ### AI/ML Services
 | Service | Model | Why We Chose It |
 |---------|-------|-----------------|
-| **OpenAI GPT-4o** | `gpt-4o` | Script generation + Manim code generation (most accurate for code) |
+| **OpenAI GPT-4o** | `gpt-4o` | Script and visual scene generation |
 | **Sarvam AI TTS** | `bulbul:v1` | Only Indian AI with native Hinglish/Hindi/Kannada TTS — critical for school students |
 | **Google Gemini** | `gemini-1.5-flash` | Vision analysis of student drawings and problem photos |
 | **HuggingFace** | `llava-1.5-7b` | Free fallback for image analysis |
@@ -207,9 +209,9 @@ Student: "BFS explain karo, video chahiye"
 ### Video Generation Pipeline
 | Technology | Role |
 |------------|------|
-| **Manim Community Edition** | Renders mathematical animations (3Blue1Brown style) |
+| **Video renderer** | Renders animated explanations |
 | **FFmpeg** | Audio-video muxing with `atempo` sync and silence padding |
-| **LaTeX + MikTeX** | Mathematical formula typesetting inside Manim |
+| **KaTeX** | Mathematical formula typesetting in generated videos |
 
 ### WhatsApp Bot Stack
 | Technology | Role |
@@ -250,7 +252,7 @@ The supervisor routes to one of 4 specialized teams:
 - **Visual Team** — image/drawing analysis (Gemini Vision)
 - **Math Team** — step-by-step problem solving with LaTeX (GPT-4o)
 - **Coding Team** — algorithm/DSA explanations (GPT-4o)
-- **Video Team** — Manim animation pipeline (GPT-4o)
+- **Video Team** — animated explanation pipeline (GPT-4o)
 
 ### 2. Video Generation Pipeline (Key Innovation)
 
@@ -267,17 +269,14 @@ Topic Input
              Each segment maps to a visual scene."
     │
     ▼
-[GPT-4o Manim Code Generator]
-    Prompt: "Generate Manim CE Python code for a 25-40s animation
-             showing {topic}. Rules: no 3D, use Write/Create/FadeIn,
-             include topic-specific visuals (not generic shapes),
-             add self.wait() calls for pacing."
+[GPT-4o Scene Generator]
+    Prompt: "Generate structured visual scenes for {topic}
+             with topic-specific visuals and narration cues."
     │
     ▼
-[Self-Healing Executor]
-    - Runs Manim render
-    - On error: sends error + code back to GPT-4o for fix
-    - Max 3 retries
+[Scene Validator and Renderer]
+    - Validates scenes before rendering
+    - Reports invalid scene data for a bounded retry
     │
     ▼
 [Duration Measurement] — ffprobe measures exact video length
@@ -353,7 +352,7 @@ Works entirely server-side — no YouTube scraping, uses official transcript API
 
 | API | Usage in Gyan Intent |
 |-----|----------------------|
-| **OpenAI GPT-4o** | Intent classification, Manim code generation, math solving, summarization |
+| **OpenAI GPT-4o** | Intent classification, scene generation, math solving, summarization |
 | **Sarvam AI (bulbul:v1)** | Hinglish/Hindi/Kannada TTS for video voiceover |
 | **Google Gemini 1.5 Flash** | Vision analysis of student-drawn problems and uploaded photos |
 | **HuggingFace (llava-1.5-7b)** | Free fallback for image analysis |
@@ -405,16 +404,11 @@ Research in cognitive science consistently shows that **visual learning outperfo
 
 ### 1. First Generative Video EdTech for Hinglish
 
-No existing platform generates **custom Manim animations with Hinglish voiceover** for any arbitrary STEM topic. Byju's, Vedantu, and Unacademy all rely on pre-recorded videos. Gyan Intent generates a new video for every query.
+No existing platform generates **custom animated explanations with Hinglish voiceover** for any arbitrary STEM topic. Byju's, Vedantu, and Unacademy all rely on pre-recorded videos. Gyan Intent generates a new video for every query.
 
-### 2. Self-Healing Manim Pipeline
+### 2. Validated Scene Pipeline
 
-Generating correct Manim code from a text topic is **not a solved problem**. LLMs frequently produce Manim code with runtime errors (deprecated APIs, unsupported methods, incorrect object references). Our **self-healing loop** automatically:
-- Catches the Python traceback
-- Sends the error + original code back to GPT-4o with a repair prompt
-- Retries up to 3 times before falling back
-
-This makes the pipeline production-ready without human supervision.
+Generated scene data is checked against bounded schemas before rendering. Invalid responses are retried or reported as failures rather than passed to the renderer.
 
 ### 3. Dynamic Audio-Video Synchronization
 
@@ -476,7 +470,7 @@ No commercially available WhatsApp education bot has this level of contextual co
 
 | Pain Point | Gyan Intent Solution |
 |-----------|---------------------|
-| Creating visual aids takes hours | Auto-generate Manim animation in 2 minutes |
+| Creating visual aids takes hours | Auto-generate animated explanation in 2 minutes |
 | Students don't understand English explanations | Hinglish/Hindi voiceover support |
 | Can't give personalized attention to 50 students | AI handles individual doubts via WhatsApp |
 | Making quizzes is tedious | AI generates MCQs for any topic instantly |
@@ -511,7 +505,7 @@ Scenario: Aryan, Class 11 (JEE aspirant) at coaching center in Jaipur
 2. Bot detects intent: concept_explanation, language: hinglish
 3. Bot sends explanation in Hinglish with YouTube links
 4. Aryan: "video chahiye"
-5. Bot triggers video generation → 45s Manim animation with Hinglish voiceover
+5. Bot triggers video generation → 45s animated explanation with Hinglish voiceover
 6. Aryan opens Gyan Intent dashboard next morning
 7. Takes gesture quiz on Magnetism → earns 50 points
 8. Downloads YouTube lecture summary PDF for revision
