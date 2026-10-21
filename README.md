@@ -4,7 +4,11 @@ The current editable explanation platform is documented in **[STUDIO.md](STUDIO.
 
 It uses Next.js, an Express/TypeScript API, independent workers and a shared Remotion Player/composition. The local mode produces real narrated MP4s from clearly labeled fixture scripts. The approved AWS pilot is deployed with exports disabled; see the **[cloud pilot record](docs/CLOUD-PILOT.md)** and **[local verification report](docs/COMPLETION.md)** for evidence and remaining work.
 
-All implementation changes in this delivery are local and uncommitted. No GitHub push was performed. The historical application documentation below is preserved for the legacy features; its Manim/FastAPI architecture does not describe the new studio workflow.
+## AWS architecture
+
+![Pragyan AWS architecture showing Cognito, API Gateway, Lambda workers, Bedrock, Polly, DynamoDB, S3, and Remotion rendering](docs/pragyan-aws-architecture.png)
+
+The historical application documentation below is preserved for the legacy features; its Manim/FastAPI architecture does not describe the new studio workflow.
 
 ---
 
@@ -20,53 +24,6 @@ Gyan_Intent is a revolutionary EdTech platform that moves beyond "Retrieval-base
 - **Vernacular Support**: Hinglish (Hindi + English) voice and text for Tier-3 India
 - **Generative AI**: Custom video explanations generated on-demand using Manim
 - **Multi-Modal Input**: Accept voice, gestures, images, or text
-
-## Architecture Overview
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           CLIENT LAYER                                       │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐             │
-│  │   Next.js 15    │  │   Three.js /    │  │   MediaPipe     │             │
-│  │   React 19      │  │   React Three   │  │   Hands         │             │
-│  │   Tailwind 4    │  │   Fiber         │  │   Gesture Ctrl  │             │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬────────┘             │
-└───────────┼────────────────────┼────────────────────┼──────────────────────┘
-            │                    │                    │
-            ▼                    ▼                    ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      API GATEWAY (FastAPI)                                   │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │  /api/v1/intent       → Intent Router (Multimodal)                  │   │
-│  │  /api/v1/video        → Video Factory Pipeline                      │   │
-│  │  /api/v1/quiz         → Gesture Quiz Handler                        │   │
-│  │  /api/v1/whatsapp     → whatsapp-web.js Bot Bridge                  │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-└───────────────────────────┬─────────────────────────────────────────────────┘
-                            │
-                            ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      ORCHESTRATION (LangGraph)                               │
-│                                                                              │
-│   ┌──────────────┐      ┌──────────────┐      ┌──────────────┐              │
-│   │  Supervisor  │─────▶│   Visual     │      │    Math      │              │
-│   │   Agent      │      │   Team       │      │    Team      │              │
-│   └──────┬───────┘      └──────────────┘      └──────────────┘              │
-│          │                                                                   │
-│          ├─────────────────────┬─────────────────────┐                       │
-│          ▼                     ▼                     ▼                       │
-│   ┌──────────────┐     ┌──────────────┐     ┌──────────────┐                │
-│   │   Coding     │     │   Video      │     │   Sarvam     │                │
-│   │   Team       │     │   Factory    │     │   TTS        │                │
-│   └──────────────┘     └──────┬───────┘     └──────────────┘                │
-│                               │                                              │
-│                               ▼                                              │
-│                        ┌──────────────┐                                      │
-│                        │   Manim +    │                                      │
-│                        │   Healer     │                                      │
-│                        └──────────────┘                                      │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
 
 ## Technology Stack
 

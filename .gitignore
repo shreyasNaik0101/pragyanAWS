@@ -38,6 +38,7 @@ backend/media/videos/
 backend/media/temp/
 *.mp4
 *.png
+!docs/pragyan-aws-architecture.png
 
 # Node
 node_modules/
