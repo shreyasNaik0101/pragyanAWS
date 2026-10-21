@@ -23,7 +23,7 @@ llm = ChatOpenAI(
 
 class IntentRequest(BaseModel):
     """Intent analysis request."""
-    modality: str  # visual, voice, gesture, text
+    modality: str  # visual, voice, text
     content: Optional[str] = None
     query: Optional[str] = None  # alias used by WhatsApp bot
     language: str = "hinglish"
@@ -50,7 +50,7 @@ async def analyze_intent(request: IntentRequest):
     """
     Analyze user intent and provide explanation.
     
-    - **modality**: Input type (visual/voice/gesture/text)
+    - **modality**: Input type (visual/voice/text)
     - **content**: The query or content to analyze
     - **language**: Target language (hinglish/hindi/english)
     - **image**: Base64 encoded image (for visual modality)

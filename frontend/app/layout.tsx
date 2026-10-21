@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Gyan_Intent | Intent-Aware Learning Engine",
-  description: "From Gesture to Genius — AI-powered generative education platform",
+  description: "AI-powered visual explanations and learning tools",
 };
 
 export default function RootLayout({

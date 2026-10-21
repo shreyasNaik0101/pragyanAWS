@@ -1,4 +1,4 @@
-export type IntentModality = "visual" | "voice" | "gesture" | "text" | "mixed";
+export type IntentModality = "visual" | "voice" | "text" | "mixed";
 
 export type IntentCategory =
   | "math"
@@ -11,15 +11,8 @@ export interface IntentInput {
   modality: IntentModality;
   content: string;
   imageData?: string;
-  gestureData?: GestureData;
   language: string;
   timestamp: number;
-}
-
-export interface GestureData {
-  gestureType: string;
-  points: Array<{ x: number; y: number }>;
-  canvasSnapshot?: string;
 }
 
 export interface IntentResult {

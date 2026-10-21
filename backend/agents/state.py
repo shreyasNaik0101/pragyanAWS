@@ -14,7 +14,6 @@ class AgentState(TypedDict):
     # Input data
     query: str
     image_data: Optional[str]  # Base64 encoded
-    gesture_data: Optional[dict]
     language: str
     
     # Routing

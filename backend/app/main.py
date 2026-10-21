@@ -92,7 +92,7 @@ async def root():
     """Root endpoint."""
     return {
         "name": "Gyan_Intent API",
-        "tagline": "From Gesture to Genius",
+        "tagline": "Visual explanations for every curious learner",
         "version": settings.APP_VERSION,
         "docs": "/docs" if settings.DEBUG else None,
     }

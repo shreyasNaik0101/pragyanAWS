@@ -113,16 +113,6 @@ body {
   animation: gradient-shift 5s ease infinite;
 }
 
-/* Gesture Indicators */
-.gesture-indicator {
-  transition: all 0.2s ease;
-}
-
-.gesture-indicator.active {
-  transform: scale(1.2);
-  filter: brightness(1.5);
-}
-
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;

@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles, Hand, Video, MessageCircle, PenTool, Brain, Globe, Play } from "lucide-react";
+import { Sparkles, Video, MessageCircle, PenTool, Brain, Globe, Play } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -44,16 +44,16 @@ export default function Home() {
 
           {/* Tagline */}
           <p className="text-xl md:text-2xl text-white/60 mb-8">
-            From Gesture to Genius — The Intent-Aware Learning Engine
+            Visual explanations for every curious learner
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/magic-learn/draw-in-air"
+              href="/dashboard"
               className="glass-button px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
             >
-              <Hand size={24} />
+              <Sparkles size={24} />
               Start Learning
             </Link>
             <Link
@@ -76,22 +76,7 @@ export default function Home() {
             Revolutionary Features
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div
-              className="glass-panel p-8 rounded-2xl"
-            >
-              <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
-                <Hand className="text-purple-400" size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Gesture Control</h3>
-              <p className="text-white/60">
-                Learn hands-free with MediaPipe hand tracking. Draw in the air, 
-                control videos with gestures, and take quizzes without touching a screen.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
+          <div className="grid md:grid-cols-2 gap-8">
             <div
               className="glass-panel p-8 rounded-2xl"
             >
@@ -105,7 +90,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Feature 3 */}
             <div
               className="glass-panel p-8 rounded-2xl"
             >
@@ -144,7 +128,7 @@ export default function Home() {
               {
                 step: "1",
                 title: "Express Your Intent",
-                desc: "Draw in the air, speak your doubts, type a question, or snap a photo — any modality, one platform.",
+                desc: "Speak your doubts, type a question, or snap a photo — several ways to start learning.",
                 icon: PenTool,
                 color: "purple",
                 gradient: "from-purple-500 to-violet-600",

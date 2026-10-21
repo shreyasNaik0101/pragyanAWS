@@ -91,7 +91,7 @@ export default function SignInPage() {
             </span>
           </h1>
           <p className="text-white/70 text-lg max-w-md">
-            AI-powered education platform with gesture quizzes, video generation, 
+            AI-powered education platform with practice quizzes, video generation,
             and personalized learning paths.
           </p>
 

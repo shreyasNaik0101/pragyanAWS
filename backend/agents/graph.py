@@ -105,7 +105,7 @@ async def process_intent(
     
     Args:
         query: User query
-        modality: Input modality (text/visual/voice/gesture)
+        modality: Input modality (text/visual/voice)
         image_data: Base64 encoded image (for visual modality)
         language: Target language
         
@@ -116,7 +116,6 @@ async def process_intent(
         messages=[HumanMessage(content=query)],
         query=query,
         image_data=image_data,
-        gesture_data=None,
         language=language,
         next="",
         route_reasoning="",

@@ -105,13 +105,13 @@ export default function SignUpPage() {
           </h1>
           <p className="text-white/70 text-lg max-w-md">
             Create your EDU ID and unlock AI-powered education tools, 
-            gesture quizzes, and personalized video lessons.
+            practice quizzes, and personalized video lessons.
           </p>
 
           <div className="space-y-4 mt-8">
             {[
               "Access 500+ educational videos",
-              "Take gesture-based quizzes",
+              "Take practice quizzes",
               "Track your learning progress",
               "Join virtual classrooms",
             ].map((feature, i) => (

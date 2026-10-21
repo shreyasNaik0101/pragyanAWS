@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import {
-  BookOpen, Video, Hand, MessageCircle, Trophy, Brain, Globe, Zap,
+  BookOpen, Video, MessageCircle, Trophy, Brain, Globe, Zap,
   Code, Server, Shield, Users, TrendingUp, CheckCircle, ArrowRight,
   Mic, PenTool, BarChart3, Smartphone, Layers, Database,
   ChevronDown, ChevronRight as ChevronRightIcon, Copy, Check,
@@ -25,7 +25,7 @@ const pricingPlans = [
     features: [
       "Up to 50 students",
       "5 AI video generations/month",
-      "Basic gesture quiz",
+      "Basic quiz",
       "Community support",
       "1 Telegram bot instance",
       "500 chat messages/month",
@@ -43,7 +43,7 @@ const pricingPlans = [
     features: [
       "Up to 500 students",
       "100 AI video generations/month",
-      "Advanced gesture + voice quiz",
+      "Advanced quiz and voice support",
       "Priority support",
       "5 Telegram bot instances",
       "10,000 chat messages/month",
@@ -91,7 +91,7 @@ const apiPricing = [
 // ─── Features ───
 const features = [
   { icon: Video, title: "AI Video Generator", desc: "Generate Remotion-powered educational animations for any concept in seconds. From calculus to chemistry.", color: "from-purple-500 to-pink-500" },
-  { icon: Hand, title: "Gesture Quiz", desc: "Answer questions using hand gestures via webcam. Thumbs up/down for True/False — gamified learning.", color: "from-cyan-500 to-blue-500" },
+  { icon: Trophy, title: "Practice Quiz", desc: "Check your understanding with short questions and feedback.", color: "from-cyan-500 to-blue-500" },
   { icon: Mic, title: "Voice Assistant", desc: "Speak your questions, get AI answers read back in natural human voice. Powered by Sarvam AI.", color: "from-green-500 to-emerald-500" },
   { icon: PenTool, title: "Draw & Solve", desc: "Draw equations, chemical formulas, or diagrams on canvas. GPT-4o Vision identifies and solves them.", color: "from-amber-500 to-orange-500" },
   { icon: MessageCircle, title: "Telegram Bot", desc: "Access AI tutoring directly from Telegram. Get explanations, video links, and quiz questions on the go.", color: "from-blue-500 to-cyan-500" },
@@ -227,7 +227,7 @@ export default function DocsPage() {
             </h1>
             <p className="text-xl text-white/60 mb-8 leading-relaxed">
               Gyan Setu is an open education platform that bridges the digital divide with AI-powered
-              video generation, voice assistants, gesture-based learning, and multilingual support —
+              video generation, voice assistants, practice quizzes, and multilingual support —
               designed for India&apos;s 260M+ students.
             </p>
             <div className="flex items-center justify-center gap-4">
