@@ -2,7 +2,7 @@
 
 An editable, multilingual visual-explanation studio. This implementation lives alongside the original application. It reuses the seven Remotion scene families and illustrations while moving the new preparation/export workflow into Express and independent TypeScript workers. **No Manim is used by this workflow.**
 
-All source work is local. Nothing was committed or pushed. The user approved a limited AWS pilot; see [cloud pilot status](docs/CLOUD-PILOT.md) and [local verification](docs/COMPLETION.md) for exact evidence and outstanding checks.
+The user approved a limited AWS pilot; see [cloud pilot status](docs/CLOUD-PILOT.md) and [local verification](docs/COMPLETION.md) for exact evidence and outstanding checks.
 
 ## Run locally
 

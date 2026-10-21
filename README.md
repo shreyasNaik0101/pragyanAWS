@@ -1,188 +1,31 @@
 # Pragyan Studio
 
-The current editable explanation platform is documented in **[STUDIO.md](STUDIO.md)**. Run `npm ci` and `npm run dev` from this repository root, then open `http://localhost:3000`.
-
-It uses Next.js, an Express/TypeScript API, independent workers and a shared Remotion Player/composition. The local mode produces real narrated MP4s from clearly labeled fixture scripts. The approved AWS pilot is deployed with exports disabled; see the **[cloud pilot record](docs/CLOUD-PILOT.md)** and **[local verification report](docs/COMPLETION.md)** for evidence and remaining work.
+Pragyan Studio turns a concept or supplied material into an editable, narrated visual explanation. You can revise individual scenes, preview the animation, review source passages, and export a video with captions.
 
 ## AWS architecture
 
 ![Pragyan AWS architecture showing Cognito, API Gateway, Lambda workers, Bedrock, Polly, DynamoDB, S3, and Remotion rendering](docs/pragyan-aws-architecture.png)
 
-The historical application documentation below is preserved for the legacy features; its Manim/FastAPI architecture does not describe the new studio workflow.
+The AWS pilot uses Cognito for sign-in, API Gateway and Lambda for the application workflow, Bedrock for scene generation, Polly for narration, DynamoDB for job and revision state, S3 for media, and Remotion Lambda for rendering. Cloud exports are currently disabled after the approved pilot. See the [pilot record](docs/CLOUD-PILOT.md) for verified behavior and current limits.
 
----
+## Run locally
 
-# Gyan_Intent — Intent-Aware Learning Engine (legacy)
+Use Node.js 22.12 or newer and npm. On Windows, an English system speech voice is needed for local narration; on Linux or macOS, use `espeak`. The first video render may download Chromium.
 
-> **Tagline**: From Gesture to Genius
-
-Gyan_Intent is a revolutionary EdTech platform that moves beyond "Retrieval-based EdTech" (Netflix for textbooks) to **"Generative EdTech."** We do not search for answers; we manufacture custom, localized, multimedia explanations on-the-fly based on the user's intent (Voice, Gesture, or Text).
-
-## Core Philosophy
-
-- **Accessibility First**: Hands-free gesture controls for motor-impaired students
-- **Vernacular Support**: Hinglish (Hindi + English) voice and text for Tier-3 India
-- **Generative AI**: Custom video explanations generated on-demand using Manim
-- **Multi-Modal Input**: Accept voice, gestures, images, or text
-
-## Technology Stack
-
-### Frontend
-- **Next.js 15** (App Router)
-- **React 19**
-- **Tailwind CSS 4**
-- **Three.js / React Three Fiber** - 3D gesture visualization
-- **MediaPipe Hands** - Client-side hand tracking
-- **Framer Motion** - Animations
-
-### Backend
-- **FastAPI** - Python API framework
-- **LangGraph** - Multi-agent orchestration
-- **LangChain + OpenAI** - LLM integration
-- **Celery + Redis** - Background task queue
-
-### AI/ML
-- **OpenAI GPT-4o** - Code generation, reasoning
-- **Sarvam AI** - Indic LLM and TTS (Hinglish support)
-- **Manim** - Mathematical animation engine
-- **MediaPipe** - Hand tracking
-
-### Infrastructure
-- **PostgreSQL** - Primary database
-- **Redis** - Caching and task queue
-- **FFMPEG** - Video processing
-
-## Quick Start
-
-### Prerequisites
-- Node.js 20+
-- Python 3.10+
-- PostgreSQL 16
-- Redis 7
-- FFmpeg
-
-### Frontend Setup
 ```bash
-cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
-### Backend Setup
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-pip install -r requirements.txt
+Open [http://localhost:3000](http://localhost:3000). The studio, Express API, and worker start together. No AWS credentials or `.env` file are needed for local mode.
 
-# Create .env file
-cp .env.example .env
-# Edit .env with your API keys
+Choose **Explain a concept** to try the supplied network or binary search examples, or **Explain my material** to work from pasted text or a text-based PDF. Local scene preparation uses authored example scripts or extracts from your material; it does not call Bedrock for arbitrary topics. Narration and MP4 exports are generated on your computer.
 
-# Run server
-uvicorn app.main:app --reload
-```
+## Explore the workflow
 
-### Celery Worker
-```bash
-cd backend
-celery -A workers.celery_app worker --loglevel=info
-```
+1. Enter as Maya or Arjun, the two local demo identities with separate workspaces.
+2. Create an explanation and wait for scene preparation and narration.
+3. Preview and edit scenes, then save a revision. Regenerate audio after changing narration.
+4. Review the script and supporting passages, approve the saved revision, and export the MP4 and WebVTT captions.
 
-## Key Features
-
-### 1. Intent Engine (Router)
-Accepts multimodal inputs and routes to appropriate agent team:
-- **DrawInAir** (MediaPipe): Draw shapes or math problems in the air
-- **Voice Command** (Sarvam): Ask questions in Hinglish
-- **Visual Snap**: Upload textbook photos
-
-### 2. Generative Video Factory
-Self-healing pipeline for video generation:
-1. **Script Agent**: Writes colloquial Hinglish script
-2. **Code Agent**: Converts script to Manim Python code
-3. **Healer Agent**: Auto-fixes errors in Manim code
-4. **Sync Engine**: Aligns TTS audio with animation
-
-### 3. Kinetic Blackboard
-React component with MediaPipe hand tracking:
-- **Air Quizzes**: Thumbs up/down for True/False
-- **Video Control**: Open palm to pause, pinch to zoom
-- **3D Drawing**: Draw in 3D space with hand gestures
-
-### 4. Rural OS (WhatsApp Bot)
-whatsapp-web.js + Celery workflow:
-- User sends doubt image on WhatsApp
-- Async processing generates video
-- Video link sent back with audio explanation
-
-## Environment Variables
-
-Create `.env` in `backend/`:
-
-```env
-# App
-DEBUG=true
-ENVIRONMENT=development
-
-# Database
-DATABASE_URL=postgresql+asyncpg://user:pass@localhost/gyanintent
-REDIS_URL=redis://localhost:6379/0
-
-# AI APIs
-OPENAI_API_KEY=sk-...
-SARVAM_API_KEY=sk-...
-
-# Auth
-SECRET_KEY=your-secret-key
-
-# WhatsApp Bot (whatsapp-web.js)
-WHATSAPP_BOT_URL=http://localhost:3003
-```
-
-## API Endpoints
-
-### Intent Engine
-- `POST /api/v1/intent/analyze` - Analyze user intent
-- `POST /api/v1/intent/analyze-image` - Analyze uploaded image
-- `POST /api/v1/intent/route` - Route to appropriate team
-
-### Video Factory
-- `POST /api/v1/video/generate` - Generate educational video
-- `GET /api/v1/video/status/{job_id}` - Check generation status
-- `GET /api/v1/video/stream/{job_id}` - Stream HLS video
-
-### Gesture Quiz
-- `GET /api/v1/quiz/questions` - Get quiz questions
-- `WS /api/v1/quiz/ws` - WebSocket for real-time gestures
-
-### WhatsApp Bot
-- `POST /api/v1/whatsapp/webhook` - whatsapp-web.js webhook bridge
-
-## Hero Flow (30-second Pitch)
-
-> **Rahul**, a Class 10 student in a Tier-3 town, struggles with Newton's Laws. He opens Gyan_Intent on his father's old smartphone.
->
-> **"Dekho, jab ball girti hai..."** he says in Hinglish. The Intent Engine understands.
->
-> He draws a falling ball in the air using **DrawInAir**. MediaPipe tracks his hand at 30 FPS.
->
-> The **Supervisor Agent** routes to the **Math Team**, which explains F=ma.
->
-> Rahul says **"Video banao"**. The **Video Factory** generates a 60-second Manim animation with Hinglish voiceover in 90 seconds.
->
-> He watches, understands, and gives a **thumbs up** when the quiz asks if he learned.
->
-> **From Gesture to Genius.**
-
-## License
-
-MIT License - See LICENSE file
-
-## Team
-
-Built with passion for accessible education.
-
----
-
-**Gyan_Intent** — Making education limitless and accessible to everyone.
+For setup details, limits, and commands, read [STUDIO.md](STUDIO.md). For implementation details, see the [architecture](docs/ARCHITECTURE.md), [deployment guide](docs/DEPLOYMENT.md), and [cost notes](docs/COSTS.md).
