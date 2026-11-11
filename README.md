@@ -34,6 +34,8 @@ For detailed setup and limits, see [STUDIO.md](STUDIO.md).
 
 ## AWS pilot architecture
 
+![Pragyan AWS architecture showing Cognito, API Gateway, Lambda workers, Bedrock, Polly, DynamoDB, S3, and Remotion rendering](docs/pragyan-aws-architecture.png)
+
 The project also ran as a limited AWS pilot. The browser sent requests to an API, while separate workers prepared scenes and narration in the background.
 
 ```mermaid
